@@ -18,13 +18,17 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "lib/libft/inc/libft.h"
-# include "lib/minilibx_macos/mlx.h"
+# include "lib/minilibx_2019/mlx.h"
 
-typedef struct s_mlx
+
+typedef struct	s_mlxdata 
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}			t_mlx;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_mlxdata;
 
 typedef struct s_map
 {
@@ -49,9 +53,11 @@ typedef struct s_graphics
 
 typedef struct s_fdf
 {
-	t_mlx		mlx;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_map		map;
-	t_graphics	graphics;
+	t_graphics	*graphics;
+	t_mlxdata	*mlxdata;
 }				t_fdf;
 
 // Process input

@@ -23,7 +23,7 @@ OBJ			= $(SRC:.c=.o)
 # Libs
 LIBFT_DIR	= lib/libft/
 LIBFT		= $(LIBFT_DIR)libft.a
-MINILIBX	= lib/minilibx_macos/libmlx.a
+MINILIBX	= libmlx.dylib
 
 
 

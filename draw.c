@@ -33,22 +33,22 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	z1 = fdf->map.matrix[(int)y1][(int)x1];
 
 	//------ zoom ------
-	x *= fdf->graphics.zoom;
-	y *= fdf->graphics.zoom;
-	x1 *= fdf->graphics.zoom;
-	y1 *= fdf->graphics.zoom;
+	x *= fdf->graphics->zoom;
+	y *= fdf->graphics->zoom;
+	x1 *= fdf->graphics->zoom;
+	y1 *= fdf->graphics->zoom;
 	//------ color -----
-	fdf->graphics.color = (z || z1) ? 0xe80c0c : 0xffffff;
+	fdf->graphics->color = (z || z1) ? 0xe80c0c : 0xffffff;
 	
 	//------ 3D ------
 	isometric(&x, &y, z);
 	isometric(&x1, &y1, z1);
 
 	//----- shift -----
-	x += fdf->graphics.shift_x;
-	x1 += fdf->graphics.shift_x;
-	y += fdf->graphics.shift_y;
-	y1 += fdf->graphics.shift_y;
+	x += fdf->graphics->shift_x;
+	x1 += fdf->graphics->shift_x;
+	y += fdf->graphics->shift_y;
+	y1 += fdf->graphics->shift_y;
 	
 	x_step = x1 - x;
 	y_step = y1 - y;
@@ -57,7 +57,7 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(fdf->mlx.mlx_ptr, fdf->mlx.win_ptr, x, y, fdf->graphics.color);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, fdf->graphics->color);
 		x += x_step;
 		y += y_step;
 	}
