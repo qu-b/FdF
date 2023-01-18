@@ -16,6 +16,24 @@ int	keypress(int key, t_fdf *fdf, void *param)
 		fdf->graphics->shift_x += 10;
 	if (key == 123)
 		fdf->graphics->shift_x -= 10;
+	if (key == 24)
+		fdf->graphics->zoom += 3;
+	if (key == 27)
+		fdf->graphics->zoom -= 3;
+	if (key == 33)
+		fdf->graphics->angle_a -= 0.05;
+	if (key == 30)
+		fdf->graphics->angle_a += 0.05;
+	if (key == 41)
+		fdf->graphics->angle_b -= 0.05;
+	if (key == 39)
+		fdf->graphics->angle_b += 0.05;
+	if (key == 43)
+		fdf->graphics->z_zoom -= 1;
+	if (key == 47)
+		fdf->graphics->z_zoom += 1;
+	
+	
 	draw(fdf);
 	return (0);
 }

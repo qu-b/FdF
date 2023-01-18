@@ -44,10 +44,12 @@ typedef struct s_graphics
 	int		scale;
 	int		z_scale;
 	int		is_iso;
-	double	angle;
+	double	angle_a;
+	double	angle_b;
 	int		win_x;
 	int		win_y;
 	int		zoom;
+	int		z_zoom;
 	int		shift_x;
 	int		shift_y ;
 }			t_graphics;

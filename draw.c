@@ -27,10 +27,10 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	isometric(float *x, float *y, int z)
+void	isometric(t_fdf *fdf, float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.5);
-	*y = (*x + *y) * sin(0.5) - z;
+	*x = (*x - *y) * cos(fdf->graphics->angle_a);
+	*y = (*x + *y) * sin(fdf->graphics->angle_b) - z;
 }
 
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
@@ -41,8 +41,8 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	int		z;
 	int		z1;
 
-	z = fdf->map.matrix[(int)y][(int)x];
-	z1 = fdf->map.matrix[(int)y1][(int)x1];
+	z = fdf->map.matrix[(int)y][(int)x] * fdf->graphics->z_zoom;
+	z1 = fdf->map.matrix[(int)y1][(int)x1] * fdf->graphics->z_zoom;
 
 	//------ zoom ------
 	x *= fdf->graphics->zoom;
@@ -53,8 +53,8 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	fdf->graphics->color = (z || z1) ? 0xe80c0c : 0xffffff;
 	
 	//------ 3D ------
-	isometric(&x, &y, z);
-	isometric(&x1, &y1, z1);
+	isometric(fdf, &x, &y, z);
+	isometric(fdf, &x1, &y1, z1);
 
 	//----- shift -----
 	x += fdf->graphics->shift_x;
