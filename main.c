@@ -15,6 +15,13 @@
 void	set_default(t_fdf *fdf)
 {
 	t_graphics	*graphics;
+	t_mlxdata	*mlxdata;
+
+	
+	fdf->mlxdata = malloc(sizeof(*mlxdata));
+	fdf->mlxdata->img = mlx_new_image(fdf->mlx_ptr, 1920, 1080);
+	fdf->mlxdata->addr = mlx_get_data_addr(fdf->mlxdata->img, &fdf->mlxdata->bits_per_pixel,
+							&fdf->mlxdata->line_length, &fdf->mlxdata->endian);
 
 	fdf->graphics = malloc(sizeof(*graphics));
 	fdf->graphics->scale = 20;
@@ -30,24 +37,6 @@ void	set_default(t_fdf *fdf)
 	// mlx_new_window(fdf->mlx.mlx_ptr, fdf->graphics.win_x, fdf->graphics.win_y, "FDF");
 }
 
-int	deal_key(int key, t_fdf *fdf, void *param)
-{
-
-	(void) param;
-	printf("%d\n ", key);
-	// fdf->graphics->shift_x = key;
-	// if (key == 126)
-	// 	fdf->graphics->shift_y -= 10;
-	// if (key == 125)
-	// 	fdf->graphics->shift_y += 10;
-	// if (key == 124)
-	// 	fdf->graphics->shift_x += 10;
-	// if (key == 123)
-	// 	fdf->graphics->shift_x -= 10;
-	// mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
-	draw(fdf);
-	return (0);
-}
 
 int	main(int ac, char **av)
 {
@@ -56,27 +45,19 @@ int	main(int ac, char **av)
 	(void)ac;
 	fdf = malloc((sizeof(*fdf)));
 	read_file(fdf, av[1]);
-	// for (int i = 0; i < fdf->map.height; i++)
-	// {
-	// 	for (int j = 0; j < fdf->map.width; j++)
-	// 	{
-	// 		if (j < fdf->map.width - 1)
-	// 			printf("%d ", fdf->map.matrix[i][j]);
-	// 		else
-	// 			printf("%d", fdf->map.matrix[i][j]);
-	// 	}
-	// 	printf("\n");
-	// }
-	set_default(fdf);
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
+	set_default(fdf);
+	
 	fdf->graphics->zoom = 20;
 	fdf->graphics->shift_x = 150;
 	fdf->graphics->shift_y = 150;
 	// bresenham(fdf, 10, 10, 5, 5);
 	draw(fdf);
-	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
+	// mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
 	// mlx_key_hook(fdf->win_ptr, deal_key, NULL);
+	// my_mlx_pixel_put(fdf, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(fdf->win_ptr, fdf->win_ptr, fdf->mlxdata->img, 0, 0);
 	mlx_loop(fdf->mlx_ptr);
 	free(fdf);
 	return (0);

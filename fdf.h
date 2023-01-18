@@ -66,6 +66,8 @@ void	read_file(t_fdf	*fdf, char *filename);
 // Draw
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1);
 void	draw(t_fdf *fdf);
+void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
+
 
 // Utils
 void	dbl_free(char **split);

@@ -15,6 +15,15 @@
 #define MAX(a, b) (a > b ? a : b)
 #define MOD(a) (a < 0 ? -a : a)
 
+void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = fdf->mlxdata->addr + (y * fdf->mlxdata->line_length 
+			+ x * (fdf->mlxdata->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 void	isometric(float *x, float *y, int z)
 {
 	*x = (*x - *y) * cos(0.8);
@@ -57,7 +66,7 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, fdf->graphics->color);
+		my_mlx_pixel_put(fdf, x, y, fdf->graphics->color);
 		x += x_step;
 		y += y_step;
 	}
