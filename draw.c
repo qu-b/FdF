@@ -19,6 +19,9 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || x >= fdf->graphics->win_x
+			|| y < 0 || y >= fdf->graphics->win_y)
+		return ;
 	dst = fdf->mlxdata->addr + (y * fdf->mlxdata->line_length 
 			+ x * (fdf->mlxdata->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
@@ -26,8 +29,8 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 
 void	isometric(float *x, float *y, int z)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	*x = (*x - *y) * cos(0.5);
+	*y = (*x + *y) * sin(0.5) - z;
 }
 
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
@@ -70,6 +73,7 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 		x += x_step;
 		y += y_step;
 	}
+	
 }
 
 void	draw(t_fdf *fdf)
@@ -90,5 +94,24 @@ void	draw(t_fdf *fdf)
 			x++;
 		}
 		y++;
+	}
+	mlx_put_image_to_window(fdf->win_ptr, fdf->win_ptr, fdf->mlxdata->img, 0, 0);
+}
+
+void	clear_image(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < fdf->graphics->win_x)
+	{
+		j = 0;
+		while (j < fdf->graphics->win_y)
+		{
+			my_mlx_pixel_put(fdf, i, j, fdf->graphics->bg_color);
+			j++;
+		}
+		i++;
 	}
 }

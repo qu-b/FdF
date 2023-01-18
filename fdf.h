@@ -40,6 +40,7 @@ typedef struct s_map
 typedef struct s_graphics
 {
 	int		color;
+	int		bg_color;
 	int		scale;
 	int		z_scale;
 	int		is_iso;
@@ -71,5 +72,10 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 
 // Utils
 void	dbl_free(char **split);
+
+// Event Handling
+int		keypress(int key, t_fdf *fdf, void *param);
+void	clear_image(t_fdf *fdf);
+
 
 #endif

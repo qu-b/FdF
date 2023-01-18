@@ -17,7 +17,7 @@ CFLAGS		= -Wall -Wextra -Werror
 FSANITIZE	= -fsanitize=address
 OPENGL		= -framework OpenGL -framework AppKit
 
-SRC			= main.c read_file.c draw.c utils.c
+SRC			= main.c read_file.c draw.c utils.c events.c
 OBJ			= $(SRC:.c=.o)
 
 # Libs
