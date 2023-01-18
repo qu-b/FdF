@@ -5,6 +5,7 @@
     "mlx.h": "c",
     "*.a": "c",
     "splits": "c",
-    "mlx_int.h": "c"
+    "mlx_int.h": "c",
+    "sstream": "c"
   }
 }

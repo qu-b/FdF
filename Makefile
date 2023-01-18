@@ -23,6 +23,7 @@ OBJ			= $(SRC:.c=.o)
 # Libs
 LIBFT_DIR	= lib/libft/
 LIBFT		= $(LIBFT_DIR)libft.a
+MILIBX_DIR	= lib/minilibx_2019
 MINILIBX	= libmlx.dylib
 
 
@@ -42,9 +43,12 @@ san:		makelibs
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
 
 clean:
+		@$(MAKE) clean -C $(LIBFT_DIR)
+		@$(MAKE) clean -C $(MILIBX_DIR)
 		$(RM) $(OBJ)
 
 fclean:		clean
+			@$(MAKE) fclean -C $(LIBFT_DIR)
 			$(RM) $(NAME)
 
 re:			fclean $(NAME)

@@ -27,7 +27,8 @@ void	set_default(t_fdf *fdf)
 							&fdf->mlxdata->line_length, &fdf->mlxdata->endian);
 	fdf->graphics = malloc(sizeof(*graphics));
 	fdf->graphics->scale = 20;
-	fdf->graphics->z_scale = 1;
+	fdf->graphics->zoom = 20;
+	// fdf->graphics->z_scale = 1;
 	fdf->graphics->is_iso = 1;
 	fdf->graphics->bg_color = 000000;
 	fdf->graphics->angle_a = 0.8;
@@ -35,7 +36,7 @@ void	set_default(t_fdf *fdf)
 	fdf->graphics->z_zoom = 1;
 	fdf->graphics->win_x = 1000;
 	fdf->graphics->win_y = 1000;
-	fdf->graphics->shift_x = fdf->graphics->win_x / 2.5;
+	fdf->graphics->shift_x = fdf->graphics->win_x / 3;
 	fdf->graphics->shift_y = fdf->graphics->win_y / 3;
 }
 
@@ -47,10 +48,10 @@ int	main(int ac, char **av)
 	(void)ac;
 	fdf = malloc((sizeof(*fdf)));
 	read_file(fdf, av[1]);
+	printf("%d\n", fdf->map.matrix[0][0]);
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
 	set_default(fdf);
-	fdf->graphics->zoom = 20;
 	// fdf->graphics->shift_x = 150;
 	// fdf->graphics->shift_y = 150;
 	draw(fdf);

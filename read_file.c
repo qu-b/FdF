@@ -65,6 +65,7 @@ void	populate_matrix(t_fdf *fdf, int fd)
 	while (j < fdf->map.height)
 	{
 		line = get_next_line(fd);
+		printf("%s ", line);
 		k = ft_strlen(line);
 		if (line[--k] == '\n')
 			line[k] = '\0';
@@ -72,9 +73,11 @@ void	populate_matrix(t_fdf *fdf, int fd)
 		fdf->map.matrix[j] = malloc(sizeof(int) * fdf->map.width);
 		while (split[i] != 0)
 		{
+			printf("%s ", split[i]);
 			fdf->map.matrix[j][i] = ft_atoi(split[i]);
 			i++;
 		}
+		printf("\n");
 		i = 0;
 		j++;
 		dbl_free (split);
@@ -94,13 +97,7 @@ int	**get_matrix(t_fdf *fdf, char *filename)
 
 void	read_file(t_fdf	*fdf, char *filename)
 {
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return ;
-	fdf->map.height = get_height(filename);
 	fdf->map.width = get_width(filename);
+	fdf->map.height = get_height(filename);
 	fdf->map.matrix = get_matrix(fdf, filename);
-	close(fd);
 }
