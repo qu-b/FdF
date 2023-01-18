@@ -33,6 +33,21 @@ void	isometric(t_fdf *fdf, float *x, float *y, int z)
 	*y = (*x + *y) * sin(fdf->graphics->angle_b) - z;
 }
 
+void plan(t_fdf *fdf, float *x, float *y, int z)
+{
+	*x = *x + cos(fdf->graphics->angle_a) * z;
+	*y = *y + sin(fdf->graphics->angle_a) * z;
+}
+
+void	globe(t_fdf *fdf, float *x, float *y, int z)
+{
+	int	r;
+
+	r = 100;
+	*x = *x * cos(fdf->graphics->angle_a) * sin(fdf->graphics->angle_b) * z - cos(fdf->graphics->angle_a) * *y;
+	*y = -*y * sin(fdf->graphics->angle_a) - z *  sin(fdf->graphics->angle_a); 
+}
+
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 {
 	float	x_step;
@@ -55,6 +70,14 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	//------ 3D ------
 	isometric(fdf, &x, &y, z);
 	isometric(fdf, &x1, &y1, z1);
+
+	// ----- One Point Projection ----
+	// plan(fdf, &x, &y, z);
+	// plan(fdf, &x1, &y1, z1);
+
+	// ------ Globe ------
+	// globe(fdf, &x, &y, z);
+	// globe(fdf, &x1, &y1, z1);
 
 	//----- shift -----
 	x += fdf->graphics->shift_x;

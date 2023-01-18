@@ -43,9 +43,9 @@ san:		makelibs
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
 
 clean:
-		@$(MAKE) clean -C $(LIBFT_DIR)
-		@$(MAKE) clean -C $(MILIBX_DIR)
-		$(RM) $(OBJ)
+			@$(MAKE) clean -C $(LIBFT_DIR)
+			@$(MAKE) clean -C $(MILIBX_DIR)
+			$(RM) $(OBJ)
 
 fclean:		clean
 			@$(MAKE) fclean -C $(LIBFT_DIR)

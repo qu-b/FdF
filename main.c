@@ -40,6 +40,11 @@ void	set_default(t_fdf *fdf)
 	fdf->graphics->shift_y = fdf->graphics->win_y / 3;
 }
 
+int		destroy(t_fdf *fdf)
+{
+	free(fdf);
+	exit (1);
+}
 
 int	main(int ac, char **av)
 {
@@ -48,15 +53,12 @@ int	main(int ac, char **av)
 	(void)ac;
 	fdf = malloc((sizeof(*fdf)));
 	read_file(fdf, av[1]);
-	printf("%d\n", fdf->map.matrix[0][0]);
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
 	set_default(fdf);
-	// fdf->graphics->shift_x = 150;
-	// fdf->graphics->shift_y = 150;
 	draw(fdf);
 	mlx_hook(fdf->win_ptr, 2, 1L << 0, keypress, fdf);
-	// mlx_hook(fdf->win_ptr, 17, 0, destroy, fdf);
+	mlx_hook(fdf->win_ptr, 17, 0, destroy, fdf);
 	mlx_put_image_to_window(fdf->win_ptr, fdf->win_ptr, fdf->mlxdata->img, 0, 0);
 	mlx_loop(fdf->mlx_ptr);
 	free(fdf);
