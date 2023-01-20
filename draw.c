@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:18:19 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/13 20:31:30 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/20 19:07:12 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,37 @@ void	isometric(t_fdf *fdf, float *x, float *y, int z)
 	*y = (*x + *y) * sin(fdf->graphics->angle_b) - z;
 }
 
+void	spherize(t_fdf *fdf)
+{
+	int	i;
+
+	i = 0;
+	while (i < map_points(fdf->map))
+	{
+		fdf->v3d[i].coord[X] = (fdf->map.radius + fdf->v3d[i].coord[Z]) * \
+		cos(fdf->v3d[i].polar[LONG]) * sin(fdf->v3d[i].polar[LAT]);
+		fdf->v3d[i].coord[Y] = (fdf->map.radius + fdf->v3d[i].coord[Z]) * \
+		sin(fdf->v3d[i].polar[LONG]) * sin(fdf->v3d[i].polar[LAT]);
+		fdf->v3d[i].coord[Z] = (fdf->map.radius + fdf->v3d[i].coord[Z]) * \
+		cos(fdf->v3d[i].polar[LAT]);
+		i++;
+	}
+}
+
 void plan(t_fdf *fdf, float *x, float *y, int z)
 {
 	*x = *x + cos(fdf->graphics->angle_a) * z;
 	*y = *y + sin(fdf->graphics->angle_a) * z;
 }
 
-void	globe(t_fdf *fdf, float *x, float *y, int z)
-{
-	int	r;
+// void	globe(t_fdf *fdf, float *x, float *y, int z)
+// {
+// 	int	r;
 
-	r = 100;
-	*x = *x * cos(fdf->graphics->angle_a) * sin(fdf->graphics->angle_b) * z - cos(fdf->graphics->angle_a) * *y;
-	*y = -*y * sin(fdf->graphics->angle_a) - z *  sin(fdf->graphics->angle_a); 
-}
+// 	r = 100;
+// 	*x = *x * cos(fdf->graphics->angle_a) * sin(fdf->graphics->angle_b) * z - cos(fdf->graphics->angle_a) * *y;
+// 	*y = -*y * sin(fdf->graphics->angle_a) - z *  sin(fdf->graphics->angle_a); 
+// }
 
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 {
@@ -68,8 +85,17 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	fdf->graphics->color = (z || z1) ? 0xe80c0c : 0xffffff;
 	
 	//------ 3D ------
-	isometric(fdf, &x, &y, z);
-	isometric(fdf, &x1, &y1, z1);
+	
+	if (fdf->graphics->sphere == 1)
+	{
+		isometric(fdf, &x, &y, z);
+		isometric(fdf, &x1, &y1, z1);
+	}
+	if (fdf->graphics->sphere == 0)
+	{
+		spherize(fdf);
+		// spherize(fdf, &x1, &y1, z1);
+	}
 
 	// ----- One Point Projection ----
 	// plan(fdf, &x, &y, z);

@@ -6,7 +6,7 @@
 #    By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:11:03 by fcullen           #+#    #+#              #
-#    Updated: 2023/01/13 16:02:36 by fcullen          ###   ########.fr        #
+#    Updated: 2023/01/20 18:02:11 by fcullen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ			= $(SRC:.c=.o)
 LIBFT_DIR	= lib/libft/
 LIBFT		= $(LIBFT_DIR)libft.a
 MILIBX_DIR	= lib/minilibx_2019
-MINILIBX	= libmlx.dylib
+MINILIBX	= libmlx.a
 
 
 
@@ -38,7 +38,7 @@ makelibs:
 			@$(MAKE) -C $(LIBFT_DIR)
 #			@$(MAKE) -C $(MILIBX_DIR)
 
-san:		makelibs
+san:		#makelibs
 			@$(MAKE) $(OBJ)
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
 
@@ -50,6 +50,7 @@ clean:
 fclean:		clean
 			@$(MAKE) fclean -C $(LIBFT_DIR)
 			$(RM) $(NAME)
+			@echo Clean!
 
 re:			fclean $(NAME)
 

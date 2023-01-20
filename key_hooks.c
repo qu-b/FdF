@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:06:16 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/13 17:10:02 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/20 10:35:17 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	key_press(int key, void *param)
 
 	fdf = (t_fdf *)param;
 	angle_control(key, fdf);
-
 	return (0);
 }
 

@@ -32,8 +32,8 @@ int	keypress(int key, t_fdf *fdf, void *param)
 		fdf->graphics->z_zoom -= 1;
 	if (key == 47)
 		fdf->graphics->z_zoom += 1;
-	
-	
+	if (key == 1)
+		fdf->graphics->sphere = !fdf->graphics->sphere;
 	draw(fdf);
 	return (0);
 }
