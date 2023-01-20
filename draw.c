@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:18:19 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/20 19:07:12 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/20 20:06:32 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,36 @@ void plan(t_fdf *fdf, float *x, float *y, int z)
 // 	*y = -*y * sin(fdf->graphics->angle_a) - z *  sin(fdf->graphics->angle_a); 
 // }
 
+void	v3d_bresenham(t_fdf *fdf, t_v3d start, t_v3d end)
+{
+	t_v3d	delta;
+	t_v3d	pixl;
+	int		pixels;
+	int		len;
+
+	delta.coord[X] = end.coord[X] - start.coord[X];
+	delta.coord[Y] = end.coord[Y] - start.coord[Y];
+	printf("%d\n", delta.coord[X]);
+	pixels = sqrt(delta.coord[X] * delta.coord[X] + 
+					delta.coord[Y] * delta.coord[Y]);
+	printf("%d\n", pixels);
+	len = pixels;
+	if (pixels > 0)
+	{delta.coord[X] /= pixels;
+	delta.coord[Y] /= pixels;}
+	pixl.coord[X] = start.coord[X];
+	pixl.coord[Y] = start.coord[Y];
+	while (pixels > 0)
+	{
+		// pixel.color = gradient(start.color, end.color, len, len - pixels);
+		my_mlx_pixel_put(fdf, delta.coord[X], 
+					delta.coord[Y], fdf->graphics->color);
+		pixl.coord[X] += delta.coord[X];
+		pixl.coord[Y] += delta.coord[Y];
+		pixels = pixels - 1;
+	}
+}
+
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 {
 	float	x_step;
@@ -86,7 +116,7 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	
 	//------ 3D ------
 	
-	if (fdf->graphics->sphere == 1)
+	if (fdf->graphics->iso != 1)
 	{
 		isometric(fdf, &x, &y, z);
 		isometric(fdf, &x1, &y1, z1);
@@ -94,6 +124,12 @@ void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1)
 	if (fdf->graphics->sphere == 0)
 	{
 		spherize(fdf);
+		x = fdf->v3d->coord[X];
+		y = fdf->v3d->coord[Y];
+		z = fdf->v3d->coord[Z];
+		
+		// isometric(fdf, &x, &y, z);
+		// isometric(fdf, &x1, &y1, z1);
 		// spherize(fdf, &x1, &y1, z1);
 	}
 
@@ -137,9 +173,15 @@ void	draw(t_fdf *fdf)
 		while (x < fdf->map.width)
 		{
 			if (x < fdf->map.width - 1)
+			{
+				// v3d_bresenham(fdf, fdf->v3d[0], fdf->v3d[map_points(fdf->map)]);
 				bresenham(fdf, x, y, x + 1, y);
+			}
 			if (y < fdf->map.height - 1)
+			{
+				// v3d_bresenham(fdf, fdf->v3d[0], fdf->v3d[map_points(fdf->map)]);
 				bresenham(fdf, x, y, x, y + 1);
+				}
 			x++;
 		}
 		y++;

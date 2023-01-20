@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:06 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/20 18:21:50 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/20 19:12:40 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	set_default(t_fdf *fdf)
 	fdf->graphics->scale = 20;
 	fdf->graphics->zoom = 20;
 	// fdf->graphics->z_scale = 1;
-	fdf->graphics->is_iso = 1;
 	fdf->graphics->bg_color = 000000;
 	fdf->graphics->angle_a = 0.8;
 	fdf->graphics->angle_b = 0.8;

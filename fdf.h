@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:27 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/20 17:58:53 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/20 19:11:37 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ typedef struct s_graphics
 	int		bg_color;
 	int		scale;
 	int		z_scale;
-	int		is_iso;
 	double	angle_a;
 	double	angle_b;
 	int		win_x;
 	int		win_y;
 	int		zoom;
+	bool	iso;
 	bool	sphere;
 	int		z_zoom;
 	int		shift_x;
