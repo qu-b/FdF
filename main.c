@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:06 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/20 19:12:40 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/24 12:56:51 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	set_default(t_fdf *fdf)
 	t_mlxdata	*mlxdata;
 
 
-	// fdf->mlx.mlx_ptr = mlx_init();
-	// fdf->mlx.win_ptr = mlx_new_window(fdf->mlx.mlx_ptr, 
-							// fdf->graphics.win_x, fdf->graphics.win_y, "FDF");
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1920, 1080, "FDF");
 	fdf->mlxdata = malloc(sizeof(*mlxdata));
 	fdf->mlxdata->img = mlx_new_image(fdf->mlx_ptr, 1920, 1080);
 	fdf->mlxdata->addr = mlx_get_data_addr(fdf->mlxdata->img, &fdf->mlxdata->bits_per_pixel,
@@ -48,19 +47,11 @@ int		destroy(t_fdf *fdf)
 int	main(int ac, char **av)
 {
 	t_fdf	*fdf;
-	t_v3d	*v3d;
 
 	(void)ac;
 	fdf = malloc((sizeof(*fdf)));
-	v3d = malloc(sizeof(*v3d));
 	read_file(fdf, av[1]);
-	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "FDF");
 	set_default(fdf);
-	fdf->v3d = matrix_to_v3d(fdf);
-	cartesian_to_polar(fdf);
-	printf("%f\n", fdf->map.radius);
-	printf("%f\n", fdf->v3d[0].polar[LONG]);
 	draw(fdf);
 	mlx_hook(fdf->win_ptr, 2, 1L << 0, keypress, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0, destroy, fdf);

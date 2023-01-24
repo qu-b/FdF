@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:27 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/20 19:11:37 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/24 11:47:13 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ typedef struct	s_mlxdata
 
 typedef struct s_v3d
 {
-	int		coord[3];
+	float	coord[3];
 	float	polar[2];
+	int		color;
 }			t_v3d;
 
 typedef struct s_map
 {
-	int		width;
-	int		height;
+	float	width;
+	float	height;
 	int		**matrix;
 	float	radius;
 }			t_map;
@@ -89,6 +90,7 @@ int		map_points(t_map map);
 void	bresenham(t_fdf *fdf, float x, float y, float x1, float y1);
 void	draw(t_fdf *fdf);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
+void	draw2(t_fdf *fdf, t_v3d p, t_v3d p1);
 
 
 // Utils

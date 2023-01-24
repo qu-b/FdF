@@ -6,7 +6,7 @@
 #    By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:11:03 by fcullen           #+#    #+#              #
-#    Updated: 2023/01/20 18:02:11 by fcullen          ###   ########.fr        #
+#    Updated: 2023/01/23 11:47:53 by fcullen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ makelibs:
 			@$(MAKE) -C $(LIBFT_DIR)
 #			@$(MAKE) -C $(MILIBX_DIR)
 
-san:		#makelibs
+san:		makelibs
 			@$(MAKE) $(OBJ)
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
 
