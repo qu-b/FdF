@@ -6,7 +6,7 @@
 #    By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:11:03 by fcullen           #+#    #+#              #
-#    Updated: 2023/01/23 11:47:53 by fcullen          ###   ########.fr        #
+#    Updated: 2023/01/26 11:32:17 by fcullen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ CFLAGS		= -Wall -Wextra -Werror
 FSANITIZE	= -fsanitize=address
 OPENGL		= -framework OpenGL -framework AppKit
 
-SRC			= main.c read_file.c draw.c utils.c events.c
+SRC			= main.c read_file.c draw.c utils.c events.c draw_utils.c init.c \
+				transformations.c projections.c matrix_algebra.c
+# draw_old.c 
 OBJ			= $(SRC:.c=.o)
 
 # Libs

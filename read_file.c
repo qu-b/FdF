@@ -6,12 +6,13 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:44:58 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/24 12:27:09 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/30 13:41:45 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// Get number of rows from file
 int	get_height(char *filename)
 {
 	int		fd;
@@ -27,6 +28,7 @@ int	get_height(char *filename)
 	return (height);
 }
 
+// Get number of columns from file
 int	get_width(char *filename)
 {
 	int		fd;
@@ -51,6 +53,7 @@ int	get_width(char *filename)
 	return (width);
 }
 
+// Use get_next_line + atoi to populate an integer matrix with a given map
 void	populate_matrix(t_fdf *fdf, int fd)
 {
 	char	**split;
@@ -61,7 +64,6 @@ void	populate_matrix(t_fdf *fdf, int fd)
 
 	i = 0;
 	j = 0;
-	k = 0;
 	while (j < fdf->map.height)
 	{
 		line = get_next_line(fd);
@@ -81,11 +83,11 @@ void	populate_matrix(t_fdf *fdf, int fd)
 	}
 }
 
+// Create space in memory for integer matrix to populate it.
 int	**get_matrix(t_fdf *fdf, char *filename)
 {
 	int	fd;
 
-	
 	fd = open(filename, O_RDONLY);	
 	fdf->map.matrix = malloc(sizeof(int *) * fdf->map.height);
 	populate_matrix(fdf, fd);
@@ -93,20 +95,31 @@ int	**get_matrix(t_fdf *fdf, char *filename)
 	return (fdf->map.matrix);
 }
 
+// Get data from file into a usable format.
 void	read_file(t_fdf	*fdf, char *filename)
 {
+	t_map		*map;
+
+	map = malloc(sizeof(*map));
+	if (!map)
+		exit (1);
+	fdf->map = *map;
 	fdf->map.width = get_width(filename);
 	fdf->map.height = get_height(filename);
+	fdf->map.n_points = map_points(&fdf->map);
 	fdf->map.matrix = get_matrix(fdf, filename);
-	fdf->v3d = matrix_to_v3d(fdf);
+	fdf->map.v3d = matrix_to_v3d(fdf);
 	cartesian_to_polar(fdf);
+	set_default(fdf, &fdf->map);
 }
 
-int	map_points(t_map map)
+// Returns the number of points on the map.
+int	map_points(t_map *map)
 {
-	return (map.width * map.height);
+	return (map->width * map->height);
 }
 
+// Converts the n*m integer matrix to 3D vectors.
 t_v3d	*matrix_to_v3d(t_fdf *fdf)
 {
 	int		x;
@@ -119,8 +132,7 @@ t_v3d	*matrix_to_v3d(t_fdf *fdf)
 	y = 0;
 	i = 0;
 	j = 1;
-
-	points = malloc(map_points(fdf->map) * sizeof(t_v3d));
+	points = malloc(fdf->map.n_points * sizeof(t_v3d));
 	if (!points)
 		return (0);
 	while (y < fdf->map.height)
@@ -130,6 +142,8 @@ t_v3d	*matrix_to_v3d(t_fdf *fdf)
 			points[i].coord[X] = x - fdf->map.width / 2;
 			points[i].coord[Y] = j - fdf->map.height / 2;
 			points[i].coord[Z] = fdf->map.matrix[y][x];
+			if (points[i].coord[Z])
+				points[i].paint = true;
 			x++;
 			i++;
 		}
@@ -140,6 +154,7 @@ t_v3d	*matrix_to_v3d(t_fdf *fdf)
 	return (points);
 }
 
+// Converts cartesion coordinates into polar coordinates.
 void	cartesian_to_polar(t_fdf *fdf)
 {
 	int		i;
@@ -150,32 +165,15 @@ void	cartesian_to_polar(t_fdf *fdf)
 	x_step = (M_PI * 2) / (fdf->map.width - 1);
 	y_step = M_PI / (fdf->map.height);
 	fdf->map.radius = fdf->map.width / (M_PI * 2);
-	while (i < map_points(fdf->map))
+	while (i < fdf->map.n_points)
 	{
-		// printf("%f, %f, %f\n", fdf->v3d[i].coord[X], fdf->v3d[i].coord[Y], fdf->v3d[i].coord[Z]);
-		fdf->v3d[i].polar[LONG] = -(fdf->v3d[i].coord[X]) * x_step;
-		if (fdf->v3d[i].coord[Y] > 0)
-			fdf->v3d[i].polar[LAT] = ((fdf->v3d[i].coord[Y]) + \
+		fdf->map.v3d[i].polar[LONG] = -(fdf->map.v3d[i].coord[X]) * x_step;
+		if (fdf->map.v3d[i].coord[Y] > 0)
+			fdf->map.v3d[i].polar[LAT] = ((fdf->map.v3d[i].coord[Y]) + \
 			(fdf->map.height / 2)) * y_step - y_step / 2;
 		else
-			fdf->v3d[i].polar[LAT] = (fdf->v3d[i].coord[Y] + \
+			fdf->map.v3d[i].polar[LAT] = (fdf->map.v3d[i].coord[Y] + \
 			(fdf->map.height / 2) - 1) * y_step + y_step / 2;
-
-		
-		// if (map->points[i].axis[Y] > 0)
-		// 	map->points[i].polar[LAT] = ((map->points[i].axis[Y]) + \
-		// 	(map->limits.axis[Y] / 2)) * steps_y - 0.5 * steps_y;
-		// else
-		// 	map->points[i].polar[LAT] = (map->points[i].axis[Y] + \
-		// 	(map->limits.axis[Y] / 2) - 1) * steps_y + 0.5 * steps_y;
-		// fdf->v3d[i].polar[LAT] = asin((fdf->v3d[i].coord[Z] / fdf->map.radius) * M_PI / 180) * (180 / M_PI);
-		// fdf->v3d[i].polar[LONG] = atan2(fdf->v3d[i].coord[X] * (M_PI / 180), fdf->v3d[i].coord[Y] * (M_PI / 180)) * (180 / M_PI);
-		printf("i: %d, LONG: %f, LAT: %f\n", i, fdf->v3d[i].polar[LONG], fdf->v3d[i].polar[LAT]);
-		// printf("%d\n", i);
 		i++;
 	}
 }
-
-// r = math.sqrt(math.pow(x, 2)+math.pow(y, 2)+math.pow(z, 2))
-//     lat = math.asin(z/r)*180/math.pi
-//     long = math.atan2(x, y)*180/math.pi
