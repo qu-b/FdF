@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:44:58 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/30 13:41:45 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/31 16:01:40 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	**get_matrix(t_fdf *fdf, char *filename)
 	fd = open(filename, O_RDONLY);	
 	fdf->map.matrix = malloc(sizeof(int *) * fdf->map.height);
 	populate_matrix(fdf, fd);
+	fdf->map.v3d = matrix_to_v3d(fdf);
+	free(fdf->map.matrix);
 	close(fd);
 	return (fdf->map.matrix);
 }
@@ -108,7 +110,6 @@ void	read_file(t_fdf	*fdf, char *filename)
 	fdf->map.height = get_height(filename);
 	fdf->map.n_points = map_points(&fdf->map);
 	fdf->map.matrix = get_matrix(fdf, filename);
-	fdf->map.v3d = matrix_to_v3d(fdf);
 	cartesian_to_polar(fdf);
 	set_default(fdf, &fdf->map);
 }
@@ -142,8 +143,7 @@ t_v3d	*matrix_to_v3d(t_fdf *fdf)
 			points[i].coord[X] = x - fdf->map.width / 2;
 			points[i].coord[Y] = j - fdf->map.height / 2;
 			points[i].coord[Z] = fdf->map.matrix[y][x];
-			if (points[i].coord[Z])
-				points[i].paint = true;
+			points[i].paint = true;
 			x++;
 			i++;
 		}

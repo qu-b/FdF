@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:39:55 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/27 17:32:50 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/30 17:04:53 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,35 +49,31 @@ void	arg_handler(int ac, char **av, char **env)
 	return ;
 }
 
-// Copy map with all settings
-t_map	*copy_map(t_fdf *fdf, t_map *map)
-{
-	t_map *copy;
+// // Copy map with all settings
+// t_map	copy_map(t_fdf *fdf, t_map map)
+// {
+// 	t_map copy;
 
-	copy = malloc(sizeof(t_map));
-	if (!copy)
-		return (0);
-	copy->v3d = copy_vec(fdf, map->v3d);
-	copy = map;
-	return (copy);
-}
+// 	copy = malloc(sizeof(t_map));
+// 	if (!copy)
+// 		return (0);
+// 	copy.v3d = copy_vec(fdf, map.v3d);
+// 	copy = map;
+// 	return (copy);
+// }
 
 // Copy all map vectors to a new 3D vector array
-t_v3d	*copy_vec(t_fdf *fdf, t_v3d *v3d)
+void	copy_vec(t_fdf *fdf, t_v3d *v3d, t_v3d *copy)
 {
-	int		i;
-	t_v3d	*copy;
+	int	i;
 
 	i = 0;
-	copy = malloc(fdf->map.n_points * sizeof(t_v3d));
-	if (!copy)
-		return (NULL);
 	while (i < fdf->map.n_points)
 	{
 		copy[i] = v3d[i];
 		i++;
 	}
-	return (copy);
+
 }
 
 // Find maximum altitude
