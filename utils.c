@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:39:55 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/30 17:04:53 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/02 17:33:23 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,11 @@ void	set_extremes(t_fdf *fdf, t_v3d *v3d)
 	i = 0;
 	while (i < fdf->map.n_points)
 	{
-		if (v3d[i].coord[Z] == fdf->map.max)
+		if (v3d[i].coord[Z] > 0)
 			v3d[i].max = true;
-		else if (v3d[i].mid == true)
-			v3d[i].mid = true;
 		else if (v3d[i].coord[Z] == fdf->map.min)
+			v3d[i].min = true;
+		// else
 			v3d[i].min = true;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:32:53 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 16:46:04 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/02 17:30:33 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	angle(float *angle, float value)
 // Angle Control
 void	angle_ctl(t_fdf *fdf, int key)
 {
+	if (key == 43)
+		angle(&fdf->map.angle[Z], -10);
+	if (key == 47)
+		angle(&fdf->map.angle[Z], 10);
 	if (key == 123)
 		angle(&fdf->map.angle[Y], -10);
 	if (key == 124)

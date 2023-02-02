@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:09:33 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 17:21:01 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/02 17:24:00 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	bresenham(t_fdf *fdf, t_v3d start, t_v3d end)
 		return (0);
 	z = start.coord[Z];
 	z1 = end.coord[Z];
-	fdf->map.color = (start.paint || end.paint) ? 0xeee : 0xffffff;
+	// fdf->map.color = (start.paint || end.paint) ? 0xeee : 0xffffff;
 	dx = end.coord[X] - start.coord[X];
 	dy = end.coord[Y] - start.coord[Y];
 	max = MAX(MOD(dx), MOD(dy));
@@ -50,6 +50,7 @@ int	bresenham(t_fdf *fdf, t_v3d start, t_v3d end)
 	return (1);
 }
 
+// This functions takes car of sphere transparency
 void	shadow(t_v3d *v3d, int len)
 {
 	int		i;

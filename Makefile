@@ -6,7 +6,7 @@
 #    By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:11:03 by fcullen           #+#    #+#              #
-#    Updated: 2023/01/31 09:04:03 by fcullen          ###   ########.fr        #
+#    Updated: 2023/02/02 17:07:28 by fcullen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,18 @@ LIBFT		= $(LIBFT_DIR)libft.a
 MILIBX_DIR	= lib/minilibx_2019
 MINILIBX	= libmlx.a
 
-
+#Colors
+GR = \033[32;1m
+RC = \033[0m
 
 all:		makelibs
 			@$(MAKE) $(NAME)
 
 $(NAME):	$(OBJ)
-			@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
+			@printf "\n -------------------------------- "
+			@printf "\n$(GR)    ✅✅✅ FDF Compiled! ✅✅✅$(RC)" 
+			@printf "\n -------------------------------- \n\n"
 
 makelibs:
 			@$(MAKE) -C $(LIBFT_DIR)
@@ -45,15 +50,17 @@ san:		makelibs
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) $(MINILIBX) $(OPENGL) -o $(NAME)
 
 clean:
-			@$(MAKE) clean -C $(LIBFT_DIR)
-			@$(MAKE) clean -C $(MILIBX_DIR)
+			$(MAKE) clean -C $(LIBFT_DIR)
+			$(MAKE) clean -C $(MILIBX_DIR)
 			$(RM) $(OBJ)
 
 fclean:		clean
 			@$(MAKE) fclean -C $(LIBFT_DIR)
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 			@echo Clean!
 
 re:			fclean $(NAME)
 
 .PHONY:		all clean fclean re
+
+
