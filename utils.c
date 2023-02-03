@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:39:55 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/02 17:33:23 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 17:25:15 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,6 @@ void	arg_handler(int ac, char **av, char **env)
 	return ;
 }
 
-// // Copy map with all settings
-// t_map	copy_map(t_fdf *fdf, t_map map)
-// {
-// 	t_map copy;
-
-// 	copy = malloc(sizeof(t_map));
-// 	if (!copy)
-// 		return (0);
-// 	copy.v3d = copy_vec(fdf, map.v3d);
-// 	copy = map;
-// 	return (copy);
-// }
-
 // Copy all map vectors to a new 3D vector array
 void	copy_vec(t_fdf *fdf, t_v3d *v3d, t_v3d *copy)
 {
@@ -71,6 +58,7 @@ void	copy_vec(t_fdf *fdf, t_v3d *v3d, t_v3d *copy)
 	while (i < fdf->map.n_points)
 	{
 		copy[i] = v3d[i];
+		copy[i].color = v3d[i].color;
 		i++;
 	}
 
@@ -120,39 +108,13 @@ void	set_extremes(t_fdf *fdf, t_v3d *v3d)
 	i = 0;
 	while (i < fdf->map.n_points)
 	{
-		if (v3d[i].coord[Z] > 0)
+		if (v3d[i].coord[Z] == fdf->map.max)
 			v3d[i].max = true;
 		else if (v3d[i].coord[Z] == fdf->map.min)
 			v3d[i].min = true;
 		// else
-			v3d[i].min = true;
+		// 	v3d[i].mid = true;
 		i++;
 	}
 }
 
-// Initialise Colors
-void	init_colors(t_fdf *fdf)
-{
-	fdf->color.bg = 0x000000; // black
-	fdf->color.max = 0x1b7e48; // green
-	fdf->color.mid = 0xffffff; // white
-	fdf->color.min = 0x3d54c8; // blue
-
-}
-// Set colors for each point
-void	set_colors(t_fdf *fdf, t_v3d *v3d, t_color color)
-{
-	int		i;
-
-	i = 0;
-	while (i < fdf->map.n_points)
-	{
-		if (v3d[i].max == true)
-			v3d[i].color = color.max;
-		else if (v3d[i].mid == true)
-			v3d[i].color = color.mid;
-		else if (v3d[i].min == true)
-			v3d[i].color = color.min;
-		i++;
-	}
-}

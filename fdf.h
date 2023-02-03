@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:27 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 17:06:34 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:05:39 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_map
 	bool	sphere;
 	bool	iso;
 	bool	parallel;
-	bool	lines;
+	bool	diagonals;
 }			t_map;
 typedef struct s_mlxdata
 {
@@ -109,6 +109,10 @@ float	max_alt(t_fdf *fdf, t_v3d *v3d);
 void	init_colors(t_fdf *fdf);
 void	map_init(t_map *map);
 
+// Colors
+int		gradient(int startcolor, int endcolor, int len, int pix);
+void	colorize(t_fdf *fdf);
+
 // Draw
 void	draw(t_fdf *fdf);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
@@ -121,6 +125,7 @@ void	copy_vec(t_fdf *fdf, t_v3d *v3d, t_v3d *copy);
 // Draw Utils
 void	clear_image(t_fdf *fdf);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
+int		ft_round(float f);
 
 // Matrix Uitls
 void	init_matrix(float (*matrix)[3]);
@@ -150,5 +155,8 @@ void	angle(float *angle, float value);
 void	angle_ctl(t_fdf *fdf, int key);
 void	zoom(t_fdf *fdf, int key);
 void	bend_ctl(t_fdf *fdf, int key, t_v3d *v3d);
+void	color_scheme(t_fdf *fdf, t_color *color, int key);
+
+
 
 #endif

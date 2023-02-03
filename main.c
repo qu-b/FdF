@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:06 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/30 16:46:29 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 17:08:43 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ int	main(int ac, char **av, char **env)
 	if (!fdf)
 		return (0);
 	read_file(fdf, av[1]);
-	init_colors(fdf);
-	set_extremes(fdf, fdf->map.v3d);
-	set_colors(fdf, fdf->map.v3d, fdf->color);
 	draw_map(fdf);
 	mlx_hook(fdf->win_ptr, 2, 1L << 0, keypress, fdf);
 	// mlx_hook(fdf->win_ptr, 2, 1L << 0, keyrelease, fdf);

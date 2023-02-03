@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:44:58 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 16:01:40 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:51:11 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	**get_matrix(t_fdf *fdf, char *filename)
 {
 	int	fd;
 
-	fd = open(filename, O_RDONLY);	
+	fd = open(filename, O_RDONLY);
 	fdf->map.matrix = malloc(sizeof(int *) * fdf->map.height);
 	populate_matrix(fdf, fd);
 	fdf->map.v3d = matrix_to_v3d(fdf);
@@ -138,7 +138,7 @@ t_v3d	*matrix_to_v3d(t_fdf *fdf)
 		return (0);
 	while (y < fdf->map.height)
 	{
-		while(x < fdf->map.width)
+		while (x < fdf->map.width)
 		{
 			points[i].coord[X] = x - fdf->map.width / 2;
 			points[i].coord[Y] = j - fdf->map.height / 2;

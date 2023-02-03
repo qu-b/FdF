@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 16:39:42 by fcullen           #+#    #+#             */
+/*   Updated: 2023/02/03 18:08:57 by fcullen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 // Handles Key Presses
 int	keypress(int key, void *param)
 {
-
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
@@ -35,11 +46,7 @@ int	keypress(int key, void *param)
 	{
 		isometric(&fdf->map);
 	}
+	color_scheme(fdf, &fdf->color, key);
 	draw_map(fdf);
 	return (0);
 }
-
-// int	keyrelease(int key, t_fdf *fdf, void *param)
-// {
-
-// }

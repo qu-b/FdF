@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:56:20 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 17:04:34 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:39:13 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,13 @@ void	z_scale(t_v3d *v3d, float scalar, int len)
 
 	i = 0;
 	if (scalar != 0)
+	{
 		while (i < len)
 		{
 			v3d[i].coord[Z] /= scalar;
 			i++;
 		}
+	}
 }
 
 // Bend

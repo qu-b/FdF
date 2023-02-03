@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:32:53 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/02 17:30:33 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:22:34 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,36 @@ void	bend_ctl(t_fdf *fdf, int key, t_v3d *v3d)
 {
 	if (key == 11)
 		bend(v3d, fdf->map.n_points, fdf->map.bend);
+}
+
+// Control Color Scheme
+void	color_scheme(t_fdf *fdf, t_color *color, int key)
+{
+	if (key == 18)
+	{
+		color->bg = 0x000000;
+		color->max = 0x1b7e48;
+		color->mid = 0x3d54c8;
+		color->min = 0x3d54c8;
+	}
+	if (key == 19)
+	{
+		color->bg = 0x000000;
+		color->max = 0xffffff;
+		color->min = 0xffffff;
+	}
+	if (key == 20)
+	{
+		color->bg = 0x000000;
+		color->max = 0x000000;
+		color->min = 0x000000;
+	}
+	if (key == 21)
+	{
+		color->bg = 0x000000;
+		color->max = 0xb7094c;
+		color->mid = 0x5c4d7d;
+		color->min = 0x0091ad;
+	}
+	colorize(fdf);
 }

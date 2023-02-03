@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:47:00 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/31 16:53:31 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/03 18:25:04 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	map_init(t_map *map)
 	map->zscale = 20;
 	map->winx = 1080;
 	map->winy = 720;
-	map->lines = 1;
+	map->diagonals = 1;
 	map->sphere = 0;
 	map->iso = 0;
 	map->bend = 0;
@@ -52,4 +52,7 @@ void	set_default(t_fdf *fdf, t_map *map)
 {
 	map_init(map);
 	mlxdata_init(fdf);
+	init_colors(fdf);
+	set_extremes(fdf, fdf->map.v3d);
+	colorize(fdf);
 }
