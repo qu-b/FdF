@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:27 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/03 18:05:39 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:12:34 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_fdf
 // Process input
 void	arg_handler(int ac, char **av, char **envp);
 void	read_file(t_fdf	*fdf, char *filename);
-t_v3d	*matrix_to_v3d(t_fdf *fdf);
+void	matrix_to_v3d(t_fdf *fdf, t_v3d *points);
 void	cartesian_to_polar(t_fdf *fdf);
 int		map_points(t_map *map);
 
@@ -120,7 +120,7 @@ void	draw_line(t_fdf *fdf, t_v3d p, t_v3d p1);
 void	wired(t_fdf *fdf);
 void	draw_map(t_fdf *fdf);
 void	copy_vec(t_fdf *fdf, t_v3d *v3d, t_v3d *copy);
-// t_map	copy_map(t_fdf *fdf, t_map map);
+void	opaque(t_v3d *v3d, int len);
 
 // Draw Utils
 void	clear_image(t_fdf *fdf);
@@ -154,7 +154,7 @@ int		keypress(int key, void *param);
 void	angle(float *angle, float value);
 void	angle_ctl(t_fdf *fdf, int key);
 void	zoom(t_fdf *fdf, int key);
-void	bend_ctl(t_fdf *fdf, int key, t_v3d *v3d);
+void	bend_ctl(t_fdf *fdf, int key);
 void	color_scheme(t_fdf *fdf, t_color *color, int key);
 
 

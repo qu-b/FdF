@@ -6,14 +6,13 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:00:10 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/27 17:26:02 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 08:45:33 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // This is a better version of the mlx_pixel_put function.
-
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 {
 	char	*dst;
@@ -28,7 +27,6 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 
 // This function is used to clear the background before
 // drawing another image.
-
 void	clear_image(t_fdf *fdf)
 {
 	int	i;
@@ -43,6 +41,22 @@ void	clear_image(t_fdf *fdf)
 			my_mlx_pixel_put(fdf, i, j, fdf->color.bg);
 			j++;
 		}
+		i++;
+	}
+}
+
+// This functions makes the sphere opaque
+void	opaque(t_v3d *v3d, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (v3d[i].coord[Z] < 0)
+			v3d[i].paint = 0;
+		else
+			v3d[i].paint = 1;
 		i++;
 	}
 }

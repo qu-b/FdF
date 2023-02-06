@@ -6,6 +6,8 @@
     "*.a": "c",
     "splits": "c",
     "mlx_int.h": "c",
-    "sstream": "c"
+    "sstream": "c",
+    "math.h": "c",
+    "stdbool.h": "c"
   }
 }

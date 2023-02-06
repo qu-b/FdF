@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:25:04 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/26 16:19:50 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 13:12:40 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_matrix(float (*matrix)[3])
 		i++;
 	}
 }
-
 
 // Function to multiply a 3D vector by a 3x3 matrix
 t_v3d	mult_mat(t_v3d	v3d, float matrix[3][3])

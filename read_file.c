@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:44:58 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/03 16:51:11 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:15:16 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,13 @@ int	**get_matrix(t_fdf *fdf, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	fdf->map.matrix = malloc(sizeof(int *) * fdf->map.height);
+	if (!fdf->map.matrix)
+		return (0);
 	populate_matrix(fdf, fd);
-	fdf->map.v3d = matrix_to_v3d(fdf);
+	fdf->map.v3d = malloc(fdf->map.n_points * sizeof(t_v3d));
+	if (!fdf->map.v3d)
+		return (0);
+	matrix_to_v3d(fdf, fdf->map.v3d);
 	free(fdf->map.matrix);
 	close(fd);
 	return (fdf->map.matrix);
@@ -112,68 +117,4 @@ void	read_file(t_fdf	*fdf, char *filename)
 	fdf->map.matrix = get_matrix(fdf, filename);
 	cartesian_to_polar(fdf);
 	set_default(fdf, &fdf->map);
-}
-
-// Returns the number of points on the map.
-int	map_points(t_map *map)
-{
-	return (map->width * map->height);
-}
-
-// Converts the n*m integer matrix to 3D vectors.
-t_v3d	*matrix_to_v3d(t_fdf *fdf)
-{
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-	t_v3d	*points;
-
-	x = 0;
-	y = 0;
-	i = 0;
-	j = 1;
-	points = malloc(fdf->map.n_points * sizeof(t_v3d));
-	if (!points)
-		return (0);
-	while (y < fdf->map.height)
-	{
-		while (x < fdf->map.width)
-		{
-			points[i].coord[X] = x - fdf->map.width / 2;
-			points[i].coord[Y] = j - fdf->map.height / 2;
-			points[i].coord[Z] = fdf->map.matrix[y][x];
-			points[i].paint = true;
-			x++;
-			i++;
-		}
-		x = 0;
-		y++;
-		j++;
-	}
-	return (points);
-}
-
-// Converts cartesion coordinates into polar coordinates.
-void	cartesian_to_polar(t_fdf *fdf)
-{
-	int		i;
-	float	x_step;
-	float	y_step;
-
-	i = 0;
-	x_step = (M_PI * 2) / (fdf->map.width - 1);
-	y_step = M_PI / (fdf->map.height);
-	fdf->map.radius = fdf->map.width / (M_PI * 2);
-	while (i < fdf->map.n_points)
-	{
-		fdf->map.v3d[i].polar[LONG] = -(fdf->map.v3d[i].coord[X]) * x_step;
-		if (fdf->map.v3d[i].coord[Y] > 0)
-			fdf->map.v3d[i].polar[LAT] = ((fdf->map.v3d[i].coord[Y]) + \
-			(fdf->map.height / 2)) * y_step - y_step / 2;
-		else
-			fdf->map.v3d[i].polar[LAT] = (fdf->map.v3d[i].coord[Y] + \
-			(fdf->map.height / 2) - 1) * y_step + y_step / 2;
-		i++;
-	}
 }

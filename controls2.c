@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/06 08:39:45 by fcullen           #+#    #+#             */
+/*   Updated: 2023/02/06 19:32:27 by fcullen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
+
+// Control Color Scheme 2
+void	color_scheme_2(t_fdf *fdf, t_color *color, int key)
+{
+	if (key == 20)
+	{
+		color->bg = 0x000000;
+		color->mid = 0x5c4d7d;
+		color->max = 0x5c4d7d;
+		color->min = 0x000000;
+	}
+	if (key == 21)
+	{
+		color->bg = 0x000000;
+		color->max = 0xb7094c;
+		color->mid = 0x5c4d7d;
+		color->min = 0x0091ad;
+	}
+	colorize(fdf);
+}
+
+// Control Color Scheme
+void	color_scheme(t_fdf *fdf, t_color *color, int key)
+{
+	if (key == 18)
+	{
+		color->bg = 0x000000;
+		color->max = 0xffffff;
+		color->mid = 0x1b7e48;
+		color->min = 0x3d54c8;
+	}
+	if (key == 19)
+	{
+		color->bg = 0x000000;
+		color->mid = 0xffffff;
+		color->max = 0xffffff;
+		color->min = 0xffffff;
+	}
+	color_scheme_2(fdf, color, key);
+}

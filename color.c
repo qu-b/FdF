@@ -6,16 +6,15 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:33:38 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/03 18:26:34 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 19:33:29 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// Initialise Colors
+// Initialise Base Colors
 void	init_colors(t_fdf *fdf)
 {
-	fdf->color.bg = 0x000000;
 	fdf->color.max = 0x1b7e48;
 	fdf->color.mid = 0x3d54d8;
 	fdf->color.min = 0x3d54d8;
@@ -24,9 +23,14 @@ void	init_colors(t_fdf *fdf)
 // Round to nearest integer
 int	ft_round(float f)
 {
-	if (f - (int)f >= 0.5)
-		f = (int)f + 1;
-	else if (f - (int)f < 0.5)
+	if (fabsf(f - (int)f) >= 0.5)
+	{
+		if (f >= 0)
+			f = (int)f + 1;
+		else
+			f = (int)f - 1;
+	}
+	else
 		f = (int)f;
 	return (f);
 }
@@ -55,20 +59,18 @@ int	gradient(int startcolor, int endcolor, int len, int pix)
 void	set_colors(t_fdf *fdf, t_v3d *v3d, t_color color)
 {
 	v3d->paint = 1;
-	v3d->color = 0xffffff;
 	if (v3d->max == 1)
 		v3d->color = color.max;
-	// else if (v3d[i].coord[Z] == 0)
-	// 	v3d[i].color = color.mid;
 	else if (v3d->min == 1)
 		v3d->color = color.min;
+	else if (v3d->mid == 1)
+		v3d->color = color.mid;
 	else if (v3d->coord[Z] > 0)
 		v3d->color = gradient(color.mid, color.max,
 				fdf->map.max, v3d->coord[Z]);
 	else
 		v3d->color = gradient(color.min, color.mid,
 				-fdf->map.min, v3d->coord[Z]);
-
 }
 
 // Colorize each pixel

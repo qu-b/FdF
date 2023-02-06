@@ -6,28 +6,20 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:39:42 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/03 18:08:57 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 13:20:10 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// Handles Key Presses
-int	keypress(int key, void *param)
+// Handles Yet More Key Presses
+int	keypress3(int key, t_fdf *fdf)
 {
-	t_fdf	*fdf;
-
-	fdf = (t_fdf *)param;
-	printf("%d\n ", key);
-	clear_image(fdf);
-	angle_ctl(fdf, key);
 	if (key == 53)
 	{
 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 		exit (0);
 	}
-	zoom(fdf, key);
-	bend_ctl(fdf, key, fdf->map.v3d);
 	if (key == 15)
 		map_init(&fdf->map);
 	if (key == 35)
@@ -35,17 +27,49 @@ int	keypress(int key, void *param)
 		parallel(&fdf->map);
 		draw_map(fdf);
 	}
-	if (key == 33)
-		if (fdf->map.zscale != 0)
+	return (0);
+}
+
+// Handles More Key Presses
+int	keypress2(int key, t_fdf *fdf)
+{
+	if (key == 0)
+		fdf->map.source.coord[X] -= 10;
+	if (key == 2)
+		fdf->map.source.coord[X] += 10;
+	if (key == 1)
+		fdf->map.source.coord[Y] += 10;
+	if (key == 13)
+		fdf->map.source.coord[Y] -= 10;
+	if (key == 12)
+		fdf->map.source.coord[Z] -= 10;
+	if (key == 14)
+		fdf->map.source.coord[Z] += 10;
+	if (key == 37)
+		fdf->map.diagonals = !fdf->map.diagonals;
+	return (0);
+}
+
+// Handles Key Presses
+int	keypress(int key, void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = (t_fdf *)param;
+	clear_image(fdf);
+	angle_ctl(fdf, key);
+	zoom(fdf, key);
+	bend_ctl(fdf, key);
+	keypress2(key, fdf);
+	keypress3(key, fdf);
+	if (key == 33 && fdf->map.zscale != 0)
 			fdf->map.zscale += 1;
 	if (key == 30)
 		fdf->map.zscale -= 1;
-	if (key == 1)
+	if (key == 5)
 		fdf->map.sphere = !fdf->map.sphere;
 	if (key == 34)
-	{
 		isometric(&fdf->map);
-	}
 	color_scheme(fdf, &fdf->color, key);
 	draw_map(fdf);
 	return (0);

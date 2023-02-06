@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:47:00 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/03 18:25:04 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/06 12:10:56 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	mlxdata_init(t_fdf *fdf)
 // Initialise map with default settings
 void	map_init(t_map *map)
 {
-	map->scale = 50;
+	map->scale = 20;
 	map->zscale = 20;
 	map->winx = 1080;
 	map->winy = 720;
-	map->diagonals = 1;
+	map->diagonals = 0;
 	map->sphere = 0;
 	map->iso = 0;
 	map->bend = 0;
 	map->source.coord[X] = 1080 / 2;
 	map->source.coord[Y] = 720 / 2;
-	map->source.coord[Z] = 0;
+	map->source.coord[Z] = 50;
 	map->angle[X] = 0;
 	map->angle[Y] = 0;
 	map->angle[Z] = 0;
