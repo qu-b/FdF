@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:27 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 16:12:34 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/07 14:16:56 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_fdf
 }				t_fdf;
 
 // Process input
-void	arg_handler(int ac, char **av, char **envp);
+void	arg_handler(int ac, char **av);
 void	read_file(t_fdf	*fdf, char *filename);
 void	matrix_to_v3d(t_fdf *fdf, t_v3d *points);
 void	cartesian_to_polar(t_fdf *fdf);

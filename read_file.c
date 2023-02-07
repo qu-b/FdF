@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:44:58 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 16:15:16 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/07 14:18:44 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	get_width(char *filename)
 		width++;
 	close(fd);
 	free(line);
+	dbl_free(split);
 	return (width);
 }
 
@@ -72,6 +73,8 @@ void	populate_matrix(t_fdf *fdf, int fd)
 			line[k] = '\0';
 		split = ft_split(line, ' ');
 		fdf->map.matrix[j] = malloc(sizeof(int) * fdf->map.width);
+		if (!fdf->map.matrix[j])
+			return ;
 		while (split[i] != 0)
 		{
 			fdf->map.matrix[j][i] = ft_atoi(split[i]);
@@ -109,7 +112,7 @@ void	read_file(t_fdf	*fdf, char *filename)
 
 	map = malloc(sizeof(*map));
 	if (!map)
-		exit (1);
+		return ;
 	fdf->map = *map;
 	fdf->map.width = get_width(filename);
 	fdf->map.height = get_height(filename);

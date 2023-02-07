@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 10:51:06 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 16:18:43 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/07 17:35:48 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int	destroy(t_fdf *fdf)
 {
 	free(fdf);
-	exit (1);
+	exit (0);
 }
 
-int	main(int ac, char **av, char **env)
+int	main(int ac, char **av)
 {
 	t_fdf	*fdf;
 
-	(void) ac;
-	(void) env;
-	arg_handler(ac, av, env);
+	arg_handler(ac, av);
 	fdf = malloc(sizeof(*fdf));
 	if (!fdf)
 		return (0);

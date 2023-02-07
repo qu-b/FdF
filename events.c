@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:39:42 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 13:20:10 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/07 17:36:39 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	keypress3(int key, t_fdf *fdf)
 	if (key == 53)
 	{
 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+		free(fdf);
 		exit (0);
 	}
 	if (key == 15)
