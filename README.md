@@ -48,7 +48,7 @@ $ make
 |` Left / Right`| X axis Rotation|
 |`< / >`| Z axis Rotation|
 |`+ / -`| Zoom |
-|`] / [`| Altitude Modifier + / -|
+|`[ / ]`| Altitude Modifier + / -|
 |`L`| Diagonals ON /OFF|
 |`G`| Spherical view ON /OFF|
 |`H`| On GEO view Shadow side ON /OFF|
