@@ -1,5 +1,15 @@
 # Fil De Fer
+
+<p align="right">
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=lightblue" />
+	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=critical" />
+	<img alt="Code language count" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=yellow" />
+	<img alt="GitHub top language" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=blue" />
+	<img alt="GitHub last commit" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=green" />
+</p>
+
 ## This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
+
 
 This is a [42](https://42.fr/en/homepage/) curriculum project. It consists of making wireframe graphics from simple text files. The files are sequences of altitudes to be rendered as a wireframe model.
 
@@ -14,7 +24,7 @@ The subject for the assignment can be found [here](subject.pdf).
 
 I decided to go for every bonus, to add spherical projections, colors and bending, in order to make the project more fun.
 
-[![turning-42](https://j.gifs.com/mq9RJR.gif)](https://j.gifs.com/mq9RJR.gif)
+![turning-42](https://j.gifs.com/mq9RJR.gif)
 
 
 ![earth](img/earth.png)
