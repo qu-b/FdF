@@ -3,7 +3,6 @@
 ## This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
 <p align="center">
 	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/qu-b/FdF?color=lightblue" />
-	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/qu-b/FdF?color=critical" />
 	<img alt="Code language count" src="https://img.shields.io/github/languages/count/qu-b/FdF?color=yellow" />
 	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/qu-b/FdF?color=blue" />
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/qu-b/FdF?color=green" />
@@ -23,7 +22,7 @@ The subject for the assignment can be found [here](subject.pdf).
 
 I decided to go for every bonus, to add spherical projections, colors and bending, in order to make the project more fun.
 
-![turning-42](https://j.gifs.com/mq9RJR.gif)
+![turning-42](img/42.gif)
 
 
 ![earth](img/earth.png)
