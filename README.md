@@ -1,11 +1,11 @@
 # Fil De Fer
 
 <p align="right">
-	<img alt="GitHub code size in bytes" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=lightblue" />
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/tokei/languages/github.com/qu-b/FdF?color=lightblue" />
 	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=critical" />
-	<img alt="Code language count" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=yellow" />
-	<img alt="GitHub top language" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=blue" />
-	<img alt="GitHub last commit" src="https://img.shields.io/tokei/lines/github.com/qu-b/FdF?color=green" />
+	<img alt="Code language count" src="https://img.shields.io/tokei/languages/top/github.com/qu-b/FdF?color=yellow" />
+	<img alt="GitHub top language" src="https://img.shields.io/tokei/languages/count/github.com/qu-b/FdF?color=blue" />
+	<img alt="GitHub last commit" src="https://img.shields.io/tokei/last-commit/github.com/qu-b/FdF?color=green" />
 </p>
 
 ## This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
