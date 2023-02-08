@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:32:53 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 13:10:30 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/08 12:01:37 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	angle(float *angle, float value)
 void	angle_ctl(t_fdf *fdf, int key)
 {
 	if (key == 43)
-		angle(&fdf->map.angle[Z], -1);
+		angle(&fdf->map.angle[Z], -3);
 	if (key == 47)
-		angle(&fdf->map.angle[Z], 1);
+		angle(&fdf->map.angle[Z], 3);
 	if (key == 123)
-		angle(&fdf->map.angle[Y], -1);
+		angle(&fdf->map.angle[Y], -3);
 	if (key == 124)
-		angle(&fdf->map.angle[Y], 1);
+		angle(&fdf->map.angle[Y], 3);
 	if (key == 125)
-		angle(&fdf->map.angle[X], -1);
+		angle(&fdf->map.angle[X], -3);
 	if (key == 126)
-		angle(&fdf->map.angle[X], 1);
+		angle(&fdf->map.angle[X], 3);
 }
 
 // Zoom control

@@ -1,18 +1,59 @@
-# 42 Fil De Fer
+# Fil De Fer
+## This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
 
-This project consists of making wireframe graphics from simple text files. The files are a bunch
-of numbers separated by spaces, which can be considered as altitudes. Each number can therefore be
-thought of as a 3-dimensional vector, with x and y coordinates corresponding to the respective
-horizontal and vertical positions in the file, and the altitude itself is the z-coordinate.
+This is a [42](https://42.fr/en/homepage/) curriculum project. It consists of making wireframe graphics from simple text files. The files are sequences of altitudes to be rendered as a wireframe model.
 
-Here is an example of one these files:
+Here is an example of one those files:
 ![Text file example](img/text-file-example.png)
-The aim of the project is to turn into something like this, using the basic graphical library MiniLibX:
+
+The aim is to turn such a file into an isometric projection, using the school's basic graphics library MiniLibX.
 
 ![42](img/42.png)
 
-The first challenge was to transform the data into a usable format. In order to do so, I used the get_next_line() function I created in a previous project, which enables the program to parse the text file line by line. I then use a split() function to split each line using the spaces as separator, which means I can store each number in an integer matrix, with the atoi() function. This caused me some problems when I tried to get a spherical projection from the data, so I ended up converting the integer matrix into an array of 3-dimensional vectors. Using vectors meant it was easier to convert the cartesian coordinates to polar coordinates, and thus create pretty spherical projections like these:
+The subject for the assignment can be found [here](subject.pdf).
 
-![mars](img/mars.png)
+I decided to go for every bonus, to add spherical projections, colors and bending, in order to make the project more fun.
+
+![turning-42](https://j.gifs.com/mq9RJR.gif)
+
+
 ![earth](img/earth.png)
+## Build
+To build the project, first clone it and then run `make` in the repository.
+```bash
+$ git clone --recursive https://github.com/qu-b/FdF.git
+```
+```bash
+$ make
+```
+## Run
+```bash
+./fdf maps/example_map.fdf
+```
+![mars](img/mars.png)
+
+## Program Controls
+
+|Key|Action|
+|---|---|
+|`Up / Down`| Y axis Rotation|
+|` Left / Right`| X axis Rotation|
+|`< / >`| Z axis Rotation|
+|`+ / -`| Zoom |
+|`] / [`| Altitude Modifier + / -|
+|`L`| Diagonals ON /OFF|
+|`G`| Spherical view ON /OFF|
+|`H`| On GEO view Shadow side ON /OFF|
+|`I`| Isometric view |
+|`P`| Parallel view |
+|`R`| Reset |
+|`A / W / S / D`| Translation |
+|`B / V`| Bendg + / -|
+|`1`| Earth Color Scheme|
+|`2`| Black & White Color Scheme|
+|`3`| |
+|`4`| Neon Color Scheme|
+|`ESC`|Close and Exit|
+
 ![ocean](img/ocean.png)
+![earth](img/flatearth.png)

@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:33:38 by fcullen           #+#    #+#             */
-/*   Updated: 2023/02/06 19:33:29 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/02/08 11:40:55 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 // Initialise Base Colors
 void	init_colors(t_fdf *fdf)
 {
-	fdf->color.max = 0x1b7e48;
-	fdf->color.mid = 0x3d54d8;
-	fdf->color.min = 0x3d54d8;
+	fdf->color.bg = 0x000000;
+	fdf->color.max = 0xffffff;
+	fdf->color.mid = 0x1b7e48;
+	fdf->color.min = 0x3d54c8;
 }
 
 // Round to nearest integer
