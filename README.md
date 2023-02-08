@@ -14,7 +14,7 @@ The subject for the assignment can be found [here](subject.pdf).
 
 I decided to go for every bonus, to add spherical projections, colors and bending, in order to make the project more fun.
 
-[![turning-42](https://j.gifs.com/mq9RJR.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
+[![turning-42](https://j.gifs.com/mq9RJR.gif)](https://j.gifs.com/mq9RJR.gif)
 
 
 ![earth](img/earth.png)
