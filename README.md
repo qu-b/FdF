@@ -29,10 +29,10 @@ I decided to go for every bonus, to add spherical projections, colors and bendin
 ## Build
 To build the project, first clone it and then run `make` in the repository.
 ```bash
-$ git clone --recursive https://github.com/qu-b/FdF.git
+git clone --recursive https://github.com/qu-b/FdF.git
 ```
 ```bash
-$ make
+make
 ```
 ## Run
 ```bash
