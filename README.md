@@ -64,3 +64,25 @@ make
 
 ![ocean](img/ocean.png)
 ![earth](img/flatearth.png)
+
+## Sources
+
+### MiniLibX Docs
+[https://dev.to/freerangepixels/a-probably-terrible-way-to-render-gradients-1p3n](https://dev.to/freerangepixels/a-probably-terrible-way-to-render-gradients-1p3n)
+
+[https://gontjarow.github.io/MiniLibX/](https://gontjarow.github.io/MiniLibX/)
+
+### A Probably Terrible Way to Render Gradients
+[https://dev.to/freerangepixels/a-probably-terrible-way-to-render-gradients-1p3n](https://dev.to/freerangepixels/a-probably-terrible-way-to-render-gradients-1p3n)
+
+### Bresenham's line algorithm
+[https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+
+### 3D Transformations
+[https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm](https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm)
+
+### 3D Computer Graphics
+[https://www.tutorialspoint.com/computer_graphics/3d_computer_graphics.htm](https://www.tutorialspoint.com/computer_graphics/3d_computer_graphics.htm)
+
+### Learning Modern 3D Graphics Programming
+[https://web.archive.org/web/20150225192611/http://www.arcsynthesis.org/gltut/index.html](https://web.archive.org/web/20150225192611/http://www.arcsynthesis.org/gltut/index.html)
