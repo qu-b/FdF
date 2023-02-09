@@ -56,10 +56,10 @@ $ make
 |`P`| Parallel view |
 |`R`| Reset |
 |`A / W / S / D`| Translation |
-|`B / V`| Bendg + / -|
+|`B / V`| Bend + / -|
 |`1`| Earth Color Scheme|
 |`2`| Black & White Color Scheme|
-|`3`| |
+|`3`| Blue & Yellow Color Scheme|
 |`4`| Neon Color Scheme|
 |`ESC`|Close and Exit|
 
