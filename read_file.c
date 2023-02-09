@@ -61,16 +61,14 @@ void	populate_matrix(t_fdf *fdf, int fd)
 	char	*line;
 	int		i;
 	int		j;
-	int		k;
 
 	i = 0;
 	j = 0;
 	while (j < fdf->map.height)
 	{
 		line = get_next_line(fd);
-		k = ft_strlen(line);
-		if (line[--k] == '\n')
-			line[k] = '\0';
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line)] = '\0';
 		split = ft_split(line, ' ');
 		fdf->map.matrix[j] = malloc(sizeof(int) * fdf->map.width);
 		if (!fdf->map.matrix[j])
