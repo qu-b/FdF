@@ -51,7 +51,6 @@ make
 |`[ / ]`| Altitude Modifier + / -|
 |`L`| Diagonals ON /OFF|
 |`G`| Spherical view ON /OFF|
-|`H`| On GEO view Shadow side ON /OFF|
 |`I`| Isometric view |
 |`P`| Parallel view |
 |`R`| Reset |
