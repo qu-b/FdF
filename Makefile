@@ -62,7 +62,6 @@ $(OBJF):
 			mkdir -p $(OBJ_DIR)
 makelibs:
 			@$(MAKE) -C $(LIBFT_DIR)
-#			@$(MAKE) -C $(MILIBX_DIR)
 
 san:		makelibs
 			@$(MAKE) $(OBJ)

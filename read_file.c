@@ -114,6 +114,11 @@ void	read_file(t_fdf	*fdf, char *filename)
 	fdf->map = *map;
 	fdf->map.width = get_width(filename);
 	fdf->map.height = get_height(filename);
+	if (map.width == 0 || map.height == 0)
+	{
+		free(map);
+		return ;
+	}
 	fdf->map.n_points = map_points(&fdf->map);
 	fdf->map.matrix = get_matrix(fdf, filename);
 	cartesian_to_polar(fdf);

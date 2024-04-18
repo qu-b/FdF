@@ -27,6 +27,8 @@ int	main(int ac, char **av)
 	if (!fdf)
 		return (0);
 	read_file(fdf, av[1]);
+	if (fdf->map.width == 0 || fdf->map.height == 0)
+		return (1);
 	draw_map(fdf);
 	mlx_hook(fdf->win_ptr, 2, 1L << 0, keypress, fdf);
 	mlx_hook(fdf->win_ptr, 17, 0, destroy, fdf);
