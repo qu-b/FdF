@@ -29,12 +29,8 @@ void	dbl_free(char **split)
 // Argument Handler
 void	arg_handler(int ac, char **av)
 {
-	int	len;
-	int	i;
 	int	fd;
 
-	len = ft_strlen(av[1]);
-	i = 0;
 	if (ac != 2)
 	{
 		ft_printf("Error: Wrong number of arguments\n");
